@@ -20,3 +20,4 @@ OJT laptop inventory project (Questronix)
 2. Start server using '**python3 manage.py runserver**'
 3. Use '**Postman**' or other tools to interact with the endpoints
 4. Access swagger documentation after starting the server using '**'your-localhost'/swagger/**'
+5. Logfile is generated automatically after starting the server

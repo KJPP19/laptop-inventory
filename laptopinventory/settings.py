@@ -164,3 +164,47 @@ SWAGGER_SETTINGS = {
       }
    }
 }
+
+
+import logging
+import os
+
+LOG_LEVEL = os.getenv('LOG_LEVEL', 'INFO')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{asctime} {levelname} {name} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': 'logfile.log',
+            'formatter': 'verbose',
+        },
+    },
+     'loggers': {
+        '': {
+            'handlers': ['console', 'file'],
+            'level': LOG_LEVEL,
+        },
+        'django': {
+            'handlers': ['console', 'file'],
+            'level': LOG_LEVEL,
+            'propagate': False,
+        },
+        'myapp': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+    },
+}

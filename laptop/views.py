@@ -13,9 +13,12 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.filters import OrderingFilter, SearchFilter
 from django.shortcuts import get_object_or_404
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
-from rest_framework.authentication import TokenAuthentication, SessionAuthentication
+from rest_framework.authentication import TokenAuthentication, SessionAuthentication, BasicAuthentication
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class UserInfoList(ListAPIView):
@@ -23,7 +26,7 @@ class UserInfoList(ListAPIView):
     queryset = UserInfo.objects.all()
     serializer_class = UserInfoSerializer
     pagination_class = PageNumberPagination
-    authentication_classes = [SessionAuthentication]
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
     permission_classes = [IsAdminUser]
 
     @swagger_auto_schema(operation_summary="This endpoint fetch the list of user's info ",
@@ -32,12 +35,13 @@ class UserInfoList(ListAPIView):
                          "this endpoint contains user's name, email and phone number. " 
                          "These will be the current users of a certain laptop. Pagination is implemented here, 3 user's infor per page")
     def get(self, request, *args, **kwargs):
+        logger.debug('fetching user info')
         return super().get(request, *args, **kwargs)
 
 
 class UserInfoCreate(APIView):
     
-    authentication_classes = [SessionAuthentication]
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
     permission_classes = [IsAdminUser]
 
     @swagger_auto_schema(request_body=UserInfoSerializer,
@@ -49,28 +53,34 @@ class UserInfoCreate(APIView):
                          "also raises an error when contact number contains non numeric values." 
                          "These will be the current users of a certain laptop")
     def post(self, request):
+        logger.debug('creating new user info')
         serializer = UserInfoSerializer(data=request.data)
         
         try:
             serializer.is_valid(raise_exception=True)
             serializer.save()
+            logger.info('user info created')
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except serializers.ValidationError as e:
+            logger.error(f'validation error: {e.detail}')
             return Response({'error': e.detail}, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
+            logger.exception('error creating user info')
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class UserInfoDetailApi(APIView):
 
-    authentication_classes = [SessionAuthentication]
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
     permission_classes = [IsAdminUser]
     @swagger_auto_schema(operation_summary="This endpoint allows to fetch single user's info based on the given ID",
                          operation_description="Since this endpoint shows the data about the user," 
                          "nn order to access this endpoint, you must be the admin.")
     def get(self, request, user_id):
+        logger.debug('fetching single user info')
         userinfo_item = get_object_or_404(UserInfo, pk=user_id)
         serializer = UserInfoSerializer(userinfo_item)
+        logger.info('successfully fetched')
         return Response(serializer.data, status=status.HTTP_200_OK)
     
     @swagger_auto_schema(request_body=UserInfoSerializer,
@@ -78,14 +88,17 @@ class UserInfoDetailApi(APIView):
                          operation_description="Since this endpoint shows the data about the user," 
                          "nn order to access this endpoint, you must be the admin.")
     def put(self, request, user_id):
+        logger.debug('updating user info')
         userinfo_item = get_object_or_404(UserInfo, pk=user_id)
         serializer = UserInfoSerializer(userinfo_item, data=request.data)
 
         try:
             serializer.is_valid(raise_exception=True)
             serializer.save()
+            logger.info('user info updated')
             return Response(serializer.data, status=status.HTTP_200_OK)
         except serializers.ValidationError as e:
+            logger.error(f'validation error: {e.detail}')
             return Response({'error': e.detail}, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
@@ -97,6 +110,7 @@ class UserInfoDetailApi(APIView):
         userinfo_item = get_object_or_404(UserInfo, pk=user_id)
         try:
             userinfo_item.delete()
+            logger.info('user info deleted')
             return Response({'message': 'user info has been deleted'}, status=status.HTTP_204_NO_CONTENT)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
@@ -108,21 +122,22 @@ class LaptopApi(ListAPIView):
     pagination_class = PageNumberPagination
     filter_backends = (SearchFilter, OrderingFilter)
     search_fields = ['brand', 'model', 'PO_number', 'serial_number']
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication, BasicAuthentication, SessionAuthentication]
+    permission_classes = [IsAuthenticated, IsAdminUser]
 
     @swagger_auto_schema(operation_summary="This endpoint fetch the list of Laptops",
                          operation_description="User must be TOKEN authenticated, specific laptops info about the brand, "
                          "model, order number, serial number, status and current user ID. " 
                          "pagination and searchability('brand', 'model', 'PO_number', 'serial_number') is implemented")
     def get(self, request, *args, **kwargs):
+        logger.debug('fetching laptop list')
         return super().get(request, *args, **kwargs)
 
 
 class LaptopCreate(APIView):
     
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication, BasicAuthentication, SessionAuthentication]
+    permission_classes = [IsAuthenticated, IsAdminUser]
 
     @swagger_auto_schema(request_body=LaptopSerializer,
                          operation_summary="This endpoint allows to create new Laptop ",
@@ -131,13 +146,16 @@ class LaptopCreate(APIView):
                          "Assuming that serial number and order number can contain both numeric and non-numeric values." 
                          "Status is set to have a valid choice(available, assigned and decommissioned), raises an error if invalid.")
     def post(self, request):
+        logger.debug('creating new laptop info')
         serializer = LaptopSerializer(data=request.data)
 
         try:
             serializer.is_valid(raise_exception=True)
             serializer.save()
+            logger.info('new laptop created')
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except serializers.ValidationError as e:
+            logger.error(f'validation error: {e.detail}')
             return Response({'error': e.detail}, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
@@ -146,28 +164,34 @@ class LaptopCreate(APIView):
 class LaptopDetailApi(APIView):
     """updates all fields of laptop including current user and laptop status"""
     
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication, BasicAuthentication, SessionAuthentication]
+    permission_classes = [IsAuthenticated, IsAdminUser]
     
     @swagger_auto_schema(operation_summary="This endpoint fetch a single Laptop based on the given ID",
                          operation_description="User must be TOKEN authenticated")
     def get(self, request, laptop_id):
+        logger.debug('fetching single laptop info')
         laptop = get_object_or_404(Laptop, pk=laptop_id)
+        logger.debug('retrieving laptop id')
         serializer = LaptopSerializer(laptop)
+        logger.info('laptop fetched')
         return Response(serializer.data, status=status.HTTP_200_OK)
     
     @swagger_auto_schema(request_body=LaptopSerializer,
                          operation_summary="This endpoint allows to update existing Laptop ",
                          operation_description="User must be TOKEN authenticated, updates all fields of laptop including current user and laptop status")
     def put(self, request, laptop_id):
+        logger.debug('updating single laptop')
         laptop = get_object_or_404(Laptop, pk=laptop_id)
         serializer = LaptopSerializer(laptop, data=request.data)
 
         try:
             serializer.is_valid(raise_exception=True)
             serializer.save()
+            logger.info('laptop updated')
             return Response(serializer.data, status=status.HTTP_200_OK)
         except serializers.ValidationError as e:
+            logger.error(f'validation error: {e.detail}')
             return Response({'error': e.detail}, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
@@ -175,9 +199,11 @@ class LaptopDetailApi(APIView):
     @swagger_auto_schema(operation_summary="This endpoint delete a single Laptop",
                          operation_description="User must be TOKEN authenticated")
     def delete(self, request, laptop_id):
+        logger.debug('fetching single laptop')
         laptop = get_object_or_404(UserInfo, pk=laptop_id)
         try:
             laptop.delete()
+            logger.info('laptop deleted')
             return Response({'message': 'laptop info has been deleted'}, status=status.HTTP_204_NO_CONTENT)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
@@ -187,12 +213,13 @@ class LaptopSummaryApi(ListAPIView):
     queryset = Laptop.objects.all()
     serializer_class = LaptopSummarySerializer
     pagination_class = PageNumberPagination
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication, BasicAuthentication, SessionAuthentication]
+    permission_classes = [IsAuthenticated, IsAdminUser]
     
     @swagger_auto_schema(operation_summary="This endpoint fetch the list of laptops limited data fields",
                          operation_description="User must be TOKEN authenticated, this shows the laptop model, status and the current user name")
     def get(self, request, *args, **kwargs):
+        logger.debug('fetching laptop list gaving limited data fields')
         return super().get(request, *args, **kwargs)
 
 
@@ -200,11 +227,13 @@ class LaptopDetailedView(ListAPIView):
     queryset = Laptop.objects.all()
     serializer_class = LaptopDetailedViewSerializer
     pagination_class = PageNumberPagination
+    authentication_classes = [BasicAuthentication, SessionAuthentication]
     permission_classes = [IsAdminUser]
 
     @swagger_auto_schema(operation_summary="This endpoint fetch the list of laptops where current user is nested",
                          operation_description="User must be ADMIN since the response will be the laptop and the current user info,")
     def get(self, request, *args, **kwargs):
+        logger.debug('fetching laptop detailed info')
         return super().get(request, *args, **kwargs)
 
 class LaptopAvailableStatus(ListAPIView):
@@ -212,12 +241,13 @@ class LaptopAvailableStatus(ListAPIView):
     queryset = Laptop.objects.filter(status='available')
     serializer_class = LaptopSerializer
     pagination_class = PageNumberPagination
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication, BasicAuthentication, SessionAuthentication]
+    permission_classes = [IsAuthenticated, IsAdminUser]
     
     @swagger_auto_schema(operation_summary="This endpoint fetch the list of laptops where status is available",
                          operation_description="this endpoint is filtered out where it only shows laptop where its status is available")
     def get(self, request, *args, **kwargs):
+        logger.debug('fetching available laptops')
         return super().get(request, *args, **kwargs)
 
 class LaptopAssignedStatus(ListAPIView):
@@ -225,12 +255,13 @@ class LaptopAssignedStatus(ListAPIView):
     queryset = Laptop.objects.filter(status='assigned')
     serializer_class = LaptopSerializer
     pagination_class = PageNumberPagination
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication, BasicAuthentication, SessionAuthentication]
+    permission_classes = [IsAuthenticated, IsAdminUser]
     
     @swagger_auto_schema(operation_summary="This endpoint fetch the list of laptops where status is assigned",
                          operation_description="this endpoint is filtered out where it only shows laptop where its status is assigned")
     def get(self, request, *args, **kwargs):
+        logger.debug('fetching assigned laptops')
         return super().get(request, *args, **kwargs)
 
 class LaptopDecommissionedStatus(ListAPIView):
@@ -238,32 +269,36 @@ class LaptopDecommissionedStatus(ListAPIView):
     queryset = Laptop.objects.filter(status='decommisioned')
     serializer_class = LaptopSerializer
     pagination_class = PageNumberPagination
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication, BasicAuthentication, SessionAuthentication]
+    permission_classes = [IsAuthenticated, IsAdminUser]
 
     @swagger_auto_schema(operation_summary="This endpoint fetch the list of laptops where status is decommissioned",
                          operation_description="this endpoint is filtered out where it only shows laptop where its status is decommissioned")
     def get(self, request, *args, **kwargs):
+        logger.debug('fetching decommissioned laptops')
         return super().get(request, *args, **kwargs)
 
 class UpdateLaptopStatusApi(APIView):
     """assummed that status is updated frequently"""
    
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication, BasicAuthentication, SessionAuthentication]
+    permission_classes = [IsAuthenticated, IsAdminUser]
    
     @swagger_auto_schema(request_body=LaptopStatusSerializer,
                          operation_summary="This endpoint allows to update only the specific laptop status",
                          operation_description="User must be TOKEN authenticated, updates only the specific laptop status")
     def patch(self, request, laptop_id):
+        logger.debug('updating laptop status')
         laptop = get_object_or_404(Laptop, pk=laptop_id)
         serializer = LaptopStatusSerializer(laptop, data=request.data, partial=True)
 
         try:
             serializer.is_valid(raise_exception=True)
             serializer.save()
+            logger.info('laptop status updated')
             return Response(serializer.data, status=status.HTTP_200_OK)
         except serializers.ValidationError as e:
+            logger.error(f'validation error: {e.detail}')
             return Response({'error': e.detail}, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
@@ -271,21 +306,24 @@ class UpdateLaptopStatusApi(APIView):
 
 class UpdateLaptopCurrentUser(APIView):
     
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication, BasicAuthentication, SessionAuthentication]
+    permission_classes = [IsAuthenticated, IsAdminUser]
     
     @swagger_auto_schema(request_body=LaptopCurrentUserSerializer,
                          operation_summary="This endpoint allows to update only the specific laptop current user",
                          operation_description="User must be TOKEN authenticated, updates only the specific laptop current user")
     def patch(self, request, laptop_id):
+        logger.debug('updating laptop current user')
         laptop = get_object_or_404(Laptop, pk=laptop_id)
         serializer = LaptopCurrentUserSerializer(laptop, data=request.data, partial=True)
 
         try:
             serializer.is_valid(raise_exception=True)
             serializer.save()
+            logger.info('updated current user')
             return Response(serializer.data, status=status.HTTP_200_OK)
         except serializers.ValidationError as e:
+            logger.error(f'validation error: {e.detail}')
             return Response({'error': e.detail}, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
@@ -293,15 +331,17 @@ class UpdateLaptopCurrentUser(APIView):
 
 class DamagedUnitApi(APIView):
     
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication, BasicAuthentication, SessionAuthentication]
+    permission_classes = [IsAuthenticated, IsAdminUser]
 
     @swagger_auto_schema(operation_summary="This endpoint allows to fetch list of damages made by a specific user",
                          operation_description="User must be TOKEN authenticated, this shows the specific user, the laptop that was damaged, "
                          "damage type and a description")
     def get(self, request):
+        logger.debug('fetching damaged laptops')
         damages = DamagedUnit.objects.all()
         serializer = DamagedUnitSerializer(damages, many=True)
+        logger.info('fetched')
         return Response(serializer.data, status=status.HTTP_200_OK)
     
     @swagger_auto_schema(request_body=DamagedUnitSerializer,
@@ -314,8 +354,10 @@ class DamagedUnitApi(APIView):
         try:
             serializer.is_valid(raise_exception=True)
             serializer.save()
+            logger.info('damage report created')
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except serializers.ValidationError as e:
+            logger.error(f'validation error: {e.detail}')
             return Response({'error': e.detail}, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
@@ -323,8 +365,8 @@ class DamagedUnitApi(APIView):
 
 class DamagedUnitDetail(APIView):
     
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication, BasicAuthentication, SessionAuthentication]
+    permission_classes = [IsAuthenticated, IsAdminUser]
     
     @swagger_auto_schema(operation_summary="This endpoint allows to fetch a single damage made by a specific user",
                          operation_description="User must be TOKEN authenticated, this shows the specific user, the laptop that was damaged, "
@@ -332,6 +374,7 @@ class DamagedUnitDetail(APIView):
     def get(self, request, damage_id):
         damage = get_object_or_404(DamagedUnit, pk=damage_id)
         serializer = DamagedUnitSerializer(damage)
+        logger.info('fetched single damage report')
         return Response(serializer.data, status=status.HTTP_200_OK)
     
     @swagger_auto_schema(request_body=DamagedUnitSerializer,
@@ -344,8 +387,10 @@ class DamagedUnitDetail(APIView):
         try:
             serializer.is_valid(raise_exception=True)
             serializer.save()
+            logger.info('damage report updated')
             return Response(serializer.data, status=status.HTTP_200_OK)
         except serializers.ValidationError as e:
+            logger.error(f'validation error: {e.detail}')
             return Response({'error': e.detail }, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
