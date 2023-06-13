@@ -1,0 +1,302 @@
+2023-06-03 07:30:26,463 INFO django.utils.autoreload Watching for file changes with StatReloader
+2023-06-03 07:30:45,087 INFO django.server "GET /swagger/ HTTP/1.1" 200 2419
+2023-06-03 07:30:45,170 INFO django.server "GET /static/drf-yasg/swagger-ui-dist/swagger-ui-bundle.js HTTP/1.1" 304 0
+2023-06-03 07:30:45,171 INFO django.server "GET /static/drf-yasg/swagger-ui-dist/swagger-ui-standalone-preset.js HTTP/1.1" 304 0
+2023-06-03 07:30:45,190 INFO django.server "GET /static/drf-yasg/swagger-ui-init.js HTTP/1.1" 304 0
+2023-06-03 07:30:45,191 INFO django.server "GET /static/drf-yasg/insQ.min.js HTTP/1.1" 304 0
+2023-06-03 07:30:45,194 INFO django.server "GET /static/drf-yasg/immutable.min.js HTTP/1.1" 304 0
+2023-06-03 07:30:45,197 INFO django.server "GET /static/drf-yasg/style.css HTTP/1.1" 304 0
+2023-06-03 07:30:45,210 INFO django.server "GET /static/drf-yasg/swagger-ui-dist/swagger-ui.css HTTP/1.1" 200 143858
+2023-06-03 07:30:45,573 INFO django.server "GET /static/drf-yasg/swagger-ui-dist/favicon-32x32.png HTTP/1.1" 200 628
+2023-06-03 07:30:45,657 INFO django.server "GET /swagger/?format=openapi HTTP/1.1" 200 19369
+2023-06-03 07:31:04,579 INFO django.server "GET /inventory/v1/laptops/ HTTP/1.1" 200 271
+2023-06-03 07:31:43,214 INFO django.server "GET /inventory/v1/laptops/ HTTP/1.1" 200 271
+2023-06-03 07:32:34,867 INFO django.utils.autoreload /Users/kean/Desktop/python django REST API/laptopinventory/laptop/views.py changed, reloading.
+2023-06-03 07:32:37,737 INFO django.utils.autoreload Watching for file changes with StatReloader
+2023-06-03 07:32:51,278 INFO django.server "GET /inventory/v1/laptops/ HTTP/1.1" 200 271
+2023-06-03 07:33:05,369 INFO django.utils.autoreload /Users/kean/Desktop/python django REST API/laptopinventory/laptop/views.py changed, reloading.
+2023-06-03 07:33:07,271 INFO django.utils.autoreload Watching for file changes with StatReloader
+2023-06-03 07:36:24,221 ERROR laptop.views validation error: {'current_user': [ErrorDetail(string='Invalid pk "2" - object does not exist.', code='does_not_exist')]}
+2023-06-03 07:36:24,224 WARNING django.request Bad Request: /inventory/v1/laptops/add/
+2023-06-03 07:36:24,225 WARNING django.server "POST /inventory/v1/laptops/add/ HTTP/1.1" 400 72
+2023-06-03 07:37:35,874 INFO laptop.views new laptop created
+2023-06-03 07:37:35,878 INFO django.server "POST /inventory/v1/laptops/add/ HTTP/1.1" 201 226
+2023-06-03 07:39:20,372 ERROR laptop.views validation error: [ErrorDetail(string='this user was already assigned to other laptop', code='invalid')]
+2023-06-03 07:39:20,373 WARNING django.request Bad Request: /inventory/v1/laptops/2/current-user/
+2023-06-03 07:39:20,373 WARNING django.server "PATCH /inventory/v1/laptops/2/current-user/ HTTP/1.1" 400 60
+2023-06-03 07:39:33,975 ERROR laptop.views validation error: {'current_user': [ErrorDetail(string='Invalid pk "2" - object does not exist.', code='does_not_exist')]}
+2023-06-03 07:39:33,976 WARNING django.request Bad Request: /inventory/v1/laptops/2/current-user/
+2023-06-03 07:39:33,977 WARNING django.server "PATCH /inventory/v1/laptops/2/current-user/ HTTP/1.1" 400 72
+2023-06-03 07:39:39,304 INFO laptop.views updated current user
+2023-06-03 07:39:39,306 INFO django.server "PATCH /inventory/v1/laptops/2/current-user/ HTTP/1.1" 200 18
+2023-06-03 08:07:49,618 WARNING django.request Forbidden: /inventory/v1/users/
+2023-06-04 01:52:56,252 WARNING django.request Forbidden: /inventory/v1/users/add/
+2023-06-04 01:53:28,969 INFO laptop.views user info created
+2023-06-04 01:54:26,598 INFO laptop.views user info created
+2023-06-04 01:55:03,179 INFO laptop.views user info created
+2023-06-04 01:57:53,700 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-04 01:57:53,703 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-04 01:57:53,721 INFO laptop.views user info created
+2023-06-04 02:00:06,651 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-04 02:00:06,652 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-04 02:00:06,668 INFO laptop.views user info created
+2023-06-04 02:02:11,661 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-04 02:02:11,663 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-04 02:02:11,679 INFO laptop.views user info created
+2023-06-04 02:02:50,127 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-04 02:02:50,128 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-04 02:02:50,142 INFO laptop.views user info created
+2023-06-04 02:03:20,847 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-04 02:03:20,849 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-04 02:03:20,871 INFO laptop.views user info created
+2023-06-04 02:04:08,842 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-04 02:04:08,843 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-04 02:04:08,875 INFO laptop.views user info created
+2023-06-04 02:28:07,512 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-04 02:28:07,514 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-04 02:28:07,540 INFO laptop.views user info created
+2023-06-04 02:28:07,563 INFO laptop.views successfully fetched
+2023-06-04 02:31:49,338 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-04 02:31:49,339 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-04 02:31:49,366 INFO laptop.views user info created
+2023-06-04 02:31:49,385 INFO laptop.views successfully fetched
+2023-06-04 02:38:18,962 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-04 02:38:18,964 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-04 02:38:18,979 INFO laptop.views user info created
+2023-06-04 02:38:18,991 INFO laptop.views successfully fetched
+2023-06-04 02:38:19,023 WARNING django.request Forbidden: /inventory/v1/users/6/
+2023-06-04 02:38:42,154 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-04 02:38:42,156 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-04 02:38:42,168 INFO laptop.views user info created
+2023-06-04 02:38:42,191 INFO laptop.views successfully fetched
+2023-06-04 02:38:42,233 ERROR laptop.views validation error: {'email': [ErrorDetail(string='Enter a valid email address.', code='invalid')], 'contact_number': [ErrorDetail(string='invalid number, must contains 11 digits (09xxxxxxxxx)', code='invalid')]}
+2023-06-04 02:38:42,234 WARNING django.request Bad Request: /inventory/v1/users/6/
+2023-06-04 02:39:17,865 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-04 02:39:17,866 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-04 02:39:17,884 INFO laptop.views user info created
+2023-06-04 02:39:17,899 INFO laptop.views successfully fetched
+2023-06-04 02:39:17,943 INFO laptop.views user info updated
+2023-06-04 02:39:58,822 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-04 02:39:58,823 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-04 02:39:58,848 INFO laptop.views user info created
+2023-06-04 02:39:58,864 INFO laptop.views successfully fetched
+2023-06-04 02:39:58,903 INFO laptop.views user info updated
+2023-06-04 02:45:16,894 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-04 02:45:16,899 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-04 02:45:16,934 INFO laptop.views user info created
+2023-06-04 02:45:16,972 INFO laptop.views successfully fetched
+2023-06-04 02:45:17,055 INFO laptop.views user info updated
+2023-06-04 02:45:45,595 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-04 02:45:45,599 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-04 02:45:45,636 INFO laptop.views user info created
+2023-06-04 02:45:45,696 INFO laptop.views successfully fetched
+2023-06-04 02:45:45,776 INFO laptop.views user info updated
+2023-06-04 03:04:41,270 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-04 03:04:41,273 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-04 03:04:41,298 INFO laptop.views user info created
+2023-06-04 03:04:41,341 INFO laptop.views user info deleted
+2023-06-04 03:04:41,362 INFO laptop.views successfully fetched
+2023-06-04 03:04:41,401 INFO laptop.views user info updated
+2023-06-04 03:05:14,973 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-04 03:05:14,974 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-04 03:05:14,990 INFO laptop.views user info created
+2023-06-04 03:05:15,010 INFO laptop.views user info deleted
+2023-06-04 03:05:15,024 INFO laptop.views successfully fetched
+2023-06-04 03:05:15,070 INFO laptop.views user info updated
+2023-06-05 05:22:55,232 INFO django.utils.autoreload Watching for file changes with StatReloader
+2023-06-05 05:23:00,678 INFO django.server "GET /swagger/ HTTP/1.1" 200 2419
+2023-06-05 05:23:00,741 INFO django.server "GET /static/drf-yasg/swagger-ui-dist/swagger-ui-standalone-preset.js HTTP/1.1" 304 0
+2023-06-05 05:23:00,741 INFO django.server "GET /static/drf-yasg/swagger-ui-dist/swagger-ui-bundle.js HTTP/1.1" 304 0
+2023-06-05 05:23:00,753 INFO django.server "GET /static/drf-yasg/insQ.min.js HTTP/1.1" 304 0
+2023-06-05 05:23:00,772 INFO django.server "GET /static/drf-yasg/style.css HTTP/1.1" 304 0
+2023-06-05 05:23:00,773 INFO django.server "GET /static/drf-yasg/swagger-ui-init.js HTTP/1.1" 304 0
+2023-06-05 05:23:00,774 INFO django.server "GET /static/drf-yasg/immutable.min.js HTTP/1.1" 304 0
+2023-06-05 05:23:00,810 INFO django.server "GET /static/drf-yasg/swagger-ui-dist/swagger-ui.css HTTP/1.1" 200 143858
+2023-06-05 05:23:01,231 INFO django.server "GET /static/drf-yasg/swagger-ui-dist/favicon-32x32.png HTTP/1.1" 304 0
+2023-06-05 05:23:01,281 INFO django.server "GET /swagger/?format=openapi HTTP/1.1" 200 19369
+2023-06-05 05:28:58,531 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-05 05:28:58,533 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-05 05:28:58,548 INFO laptop.views user info created
+2023-06-05 05:28:58,580 INFO laptop.views user info deleted
+2023-06-05 05:28:58,589 INFO laptop.views successfully fetched
+2023-06-05 05:28:58,651 INFO laptop.views user info updated
+2023-06-06 00:39:40,511 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-06 00:39:40,513 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-06 00:39:40,530 INFO laptop.views user info created
+2023-06-06 00:39:40,551 INFO laptop.views user info deleted
+2023-06-06 00:39:40,570 INFO laptop.views successfully fetched
+2023-06-06 00:39:40,623 INFO laptop.views user info updated
+2023-06-06 00:40:53,133 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-06 00:40:53,136 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-06 00:40:53,157 INFO laptop.views user info created
+2023-06-06 00:40:53,215 INFO laptop.views user info deleted
+2023-06-06 00:40:53,230 INFO laptop.views successfully fetched
+2023-06-06 00:40:53,296 INFO laptop.views user info updated
+2023-06-06 00:41:47,683 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-06 00:41:47,684 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-06 00:41:47,704 INFO laptop.views user info created
+2023-06-06 00:41:47,728 INFO laptop.views user info deleted
+2023-06-06 00:41:47,747 INFO laptop.views successfully fetched
+2023-06-06 00:41:47,787 INFO laptop.views user info updated
+2023-06-06 00:46:01,311 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-06 00:46:01,314 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-06 00:46:01,330 INFO laptop.views user info created
+2023-06-06 00:46:01,348 INFO laptop.views user info deleted
+2023-06-06 00:46:01,363 INFO laptop.views successfully fetched
+2023-06-06 00:46:01,403 INFO laptop.views user info updated
+2023-06-06 00:46:33,493 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-06 00:46:33,496 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-06 00:46:33,525 INFO laptop.views user info created
+2023-06-06 00:46:33,568 INFO laptop.views user info deleted
+2023-06-06 00:46:33,587 INFO laptop.views successfully fetched
+2023-06-06 00:46:33,644 INFO laptop.views user info updated
+2023-06-06 00:47:50,242 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-06 00:47:50,244 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-06 00:47:50,267 INFO laptop.views user info created
+2023-06-06 00:47:50,292 INFO laptop.views user info deleted
+2023-06-06 00:47:50,305 INFO laptop.views successfully fetched
+2023-06-06 00:47:50,356 INFO laptop.views user info updated
+2023-06-06 01:16:26,801 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-06 01:16:26,803 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-06 01:16:26,840 INFO laptop.views user info created
+2023-06-06 01:16:26,920 INFO laptop.views user info deleted
+2023-06-06 01:16:26,934 INFO laptop.views successfully fetched
+2023-06-06 01:16:27,012 INFO laptop.views user info updated
+2023-06-06 01:17:29,111 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-06 01:17:29,113 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-06 01:17:29,126 INFO laptop.views user info created
+2023-06-06 01:17:29,149 INFO laptop.views user info deleted
+2023-06-06 01:17:29,167 INFO laptop.views successfully fetched
+2023-06-06 01:17:29,196 INFO laptop.views user info updated
+2023-06-06 02:20:08,060 INFO django.utils.autoreload Watching for file changes with StatReloader
+2023-06-06 02:20:10,921 INFO django.server "GET /swagger/ HTTP/1.1" 200 2419
+2023-06-06 02:20:10,976 INFO django.server "GET /static/drf-yasg/swagger-ui-dist/swagger-ui-bundle.js HTTP/1.1" 304 0
+2023-06-06 02:20:10,997 INFO django.server "GET /static/drf-yasg/insQ.min.js HTTP/1.1" 304 0
+2023-06-06 02:20:11,000 INFO django.server "GET /static/drf-yasg/swagger-ui-init.js HTTP/1.1" 304 0
+2023-06-06 02:20:11,001 INFO django.server "GET /static/drf-yasg/swagger-ui-dist/swagger-ui-standalone-preset.js HTTP/1.1" 304 0
+2023-06-06 02:20:11,005 INFO django.server "GET /static/drf-yasg/immutable.min.js HTTP/1.1" 304 0
+2023-06-06 02:20:11,012 INFO django.server "GET /static/drf-yasg/style.css HTTP/1.1" 304 0
+2023-06-06 02:20:11,016 INFO django.server "GET /static/drf-yasg/swagger-ui-dist/swagger-ui.css HTTP/1.1" 304 0
+2023-06-06 02:20:11,258 INFO django.server "GET /static/drf-yasg/swagger-ui-dist/favicon-32x32.png HTTP/1.1" 304 0
+2023-06-06 02:20:11,344 INFO django.server "GET /swagger/?format=openapi HTTP/1.1" 200 19369
+2023-06-06 02:21:02,572 INFO django.server "GET /admin/ HTTP/1.1" 200 8066
+2023-06-06 02:21:02,700 INFO django.server "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2694
+2023-06-06 02:21:02,703 INFO django.server "GET /static/admin/js/theme.js HTTP/1.1" 200 1943
+2023-06-06 02:21:02,705 INFO django.server "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+2023-06-06 02:21:02,713 INFO django.server "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2929
+2023-06-06 02:21:02,722 INFO django.server "GET /static/admin/css/responsive.css HTTP/1.1" 200 18533
+2023-06-06 02:21:02,770 INFO django.server "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+2023-06-06 02:21:02,871 INFO django.server "GET /static/admin/css/base.css HTTP/1.1" 200 21207
+2023-06-06 02:21:02,892 INFO django.server "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+2023-06-06 02:21:02,897 INFO django.server "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+2023-06-06 02:21:04,827 INFO django.server "POST /admin/logout/ HTTP/1.1" 200 3576
+2023-06-06 02:21:07,253 INFO django.server "GET /admin/ HTTP/1.1" 302 0
+2023-06-06 02:21:07,320 INFO django.server "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4178
+2023-06-06 02:21:07,355 INFO django.server "GET /static/admin/css/login.css HTTP/1.1" 200 958
+2023-06-06 02:21:10,322 INFO django.server "GET /swagger/ HTTP/1.1" 200 2179
+2023-06-06 02:21:10,648 INFO django.server "GET /swagger/?format=openapi HTTP/1.1" 200 19369
+2023-06-06 02:31:45,909 WARNING django.request Unauthorized: /inventory/v1/laptops/
+2023-06-06 02:31:45,912 WARNING django.server "GET /inventory/v1/laptops/ HTTP/1.1" 401 58
+2023-06-06 02:37:37,493 INFO django.server "POST /inventory/v1/register/ HTTP/1.1" 201 51
+2023-06-06 02:42:20,343 WARNING django.request Not Found: /inventory/v1/login/
+2023-06-06 02:42:20,347 WARNING django.server "POST /inventory/v1/login/ HTTP/1.1" 404 40
+2023-06-06 02:42:45,151 INFO django.server "POST /inventory/v1/login/ HTTP/1.1" 200 87
+2023-06-06 02:51:55,062 INFO django.server "GET /swagger/ HTTP/1.1" 200 2179
+2023-06-06 02:51:55,380 INFO django.server "GET /swagger/?format=openapi HTTP/1.1" 200 19369
+2023-06-06 02:54:49,404 INFO django.server "GET /inventory/v1/laptops/ HTTP/1.1" 200 498
+2023-06-06 03:06:12,473 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-06 03:06:12,474 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-06 03:06:12,488 INFO laptop.views user info created
+2023-06-06 03:06:12,508 INFO laptop.views user info deleted
+2023-06-06 03:06:12,523 INFO laptop.views successfully fetched
+2023-06-06 03:06:12,563 INFO laptop.views user info updated
+2023-06-06 04:50:08,344 INFO laptop.views new laptop created
+2023-06-06 04:50:08,451 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-06 04:50:08,454 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-06 04:50:08,508 INFO laptop.views user info created
+2023-06-06 04:50:08,542 INFO laptop.views user info deleted
+2023-06-06 04:50:08,556 INFO laptop.views successfully fetched
+2023-06-06 04:50:08,607 INFO laptop.views user info updated
+2023-06-06 04:51:04,795 ERROR laptop.views validation error: {'current_user': [ErrorDetail(string='Incorrect type. Expected pk value, received str.', code='incorrect_type')]}
+2023-06-06 04:51:04,799 WARNING django.request Bad Request: /inventory/v1/laptops/add/
+2023-06-06 04:51:04,886 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-06 04:51:04,887 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-06 04:51:04,904 INFO laptop.views user info created
+2023-06-06 04:51:04,927 INFO laptop.views user info deleted
+2023-06-06 04:51:04,945 INFO laptop.views successfully fetched
+2023-06-06 04:51:04,996 INFO laptop.views user info updated
+2023-06-06 04:51:31,099 ERROR laptop.views validation error: {'current_user': [ErrorDetail(string='Incorrect type. Expected pk value, received str.', code='incorrect_type')]}
+2023-06-06 04:51:31,100 WARNING django.request Bad Request: /inventory/v1/laptops/add/
+2023-06-06 04:51:31,156 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-06 04:51:31,158 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-06 04:51:31,175 INFO laptop.views user info created
+2023-06-06 04:51:31,200 INFO laptop.views user info deleted
+2023-06-06 04:51:31,212 INFO laptop.views successfully fetched
+2023-06-06 04:51:31,259 INFO laptop.views user info updated
+2023-06-06 04:52:01,434 ERROR laptop.views validation error: {'current_user': [ErrorDetail(string='Incorrect type. Expected pk value, received str.', code='incorrect_type')]}
+2023-06-06 04:52:01,436 WARNING django.request Bad Request: /inventory/v1/laptops/add/
+2023-06-06 04:52:01,492 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-06 04:52:01,493 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-06 04:52:01,514 INFO laptop.views user info created
+2023-06-06 04:52:01,535 INFO laptop.views user info deleted
+2023-06-06 04:52:01,551 INFO laptop.views successfully fetched
+2023-06-06 04:52:01,591 INFO laptop.views user info updated
+2023-06-06 04:53:13,065 ERROR laptop.views validation error: {'current_user': [ErrorDetail(string='Incorrect type. Expected pk value, received str.', code='incorrect_type')]}
+2023-06-06 04:53:13,066 WARNING django.request Bad Request: /inventory/v1/laptops/add/
+2023-06-06 04:53:13,132 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-06 04:53:13,133 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-06 04:53:13,152 INFO laptop.views user info created
+2023-06-06 04:53:13,171 INFO laptop.views user info deleted
+2023-06-06 04:53:13,189 INFO laptop.views successfully fetched
+2023-06-06 04:53:13,234 INFO laptop.views user info updated
+2023-06-06 04:54:03,116 ERROR laptop.views validation error: {'current_user': [ErrorDetail(string='Invalid pk "2" - object does not exist.', code='does_not_exist')]}
+2023-06-06 04:54:03,118 WARNING django.request Bad Request: /inventory/v1/laptops/add/
+2023-06-06 04:54:03,203 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-06 04:54:03,204 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-06 04:54:03,224 INFO laptop.views user info created
+2023-06-06 04:54:03,241 INFO laptop.views user info deleted
+2023-06-06 04:54:03,256 INFO laptop.views successfully fetched
+2023-06-06 04:54:03,306 INFO laptop.views user info updated
+2023-06-06 04:54:20,105 INFO laptop.views new laptop created
+2023-06-06 04:54:20,155 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-06 04:54:20,156 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-06 04:54:20,174 INFO laptop.views user info created
+2023-06-06 04:54:20,193 INFO laptop.views user info deleted
+2023-06-06 04:54:20,212 INFO laptop.views successfully fetched
+2023-06-06 04:54:20,255 INFO laptop.views user info updated
+2023-06-06 04:56:24,762 INFO laptop.views new laptop created
+2023-06-06 04:56:24,816 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-06 04:56:24,817 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-06 04:56:24,834 INFO laptop.views user info created
+2023-06-06 04:56:24,857 INFO laptop.views user info deleted
+2023-06-06 04:56:24,874 INFO laptop.views successfully fetched
+2023-06-06 04:56:24,912 INFO laptop.views user info updated
+2023-06-06 04:57:01,365 INFO laptop.views new laptop created
+2023-06-06 04:57:01,432 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-06 04:57:01,433 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-06 04:57:01,457 INFO laptop.views user info created
+2023-06-06 04:57:01,486 INFO laptop.views user info deleted
+2023-06-06 04:57:01,500 INFO laptop.views successfully fetched
+2023-06-06 04:57:01,550 INFO laptop.views user info updated
+2023-06-06 04:57:16,990 INFO laptop.views new laptop created
+2023-06-06 04:57:17,044 ERROR laptop.views validation error: {'email': [ErrorDetail(string='user info with this email already exists.', code='unique')], 'contact_number': [ErrorDetail(string='user info with this contact number already exists.', code='unique')]}
+2023-06-06 04:57:17,045 WARNING django.request Bad Request: /inventory/v1/users/add/
+2023-06-06 04:57:17,064 INFO laptop.views user info created
+2023-06-06 04:57:17,084 INFO laptop.views user info deleted
+2023-06-06 04:57:17,102 INFO laptop.views successfully fetched
+2023-06-06 04:57:17,144 INFO laptop.views user info updated
+2023-06-08 01:27:18,116 INFO django.utils.autoreload Watching for file changes with StatReloader
+2023-06-08 01:28:20,896 INFO django.server "GET /admin/ HTTP/1.1" 302 0
+2023-06-08 01:28:21,103 INFO django.server "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4178
+2023-06-08 01:28:21,169 INFO django.server "GET /static/admin/css/base.css HTTP/1.1" 304 0
+2023-06-08 01:28:21,172 INFO django.server "GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+2023-06-08 01:28:21,177 INFO django.server "GET /static/admin/css/login.css HTTP/1.1" 304 0
+2023-06-08 01:28:21,191 INFO django.server "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+2023-06-08 01:28:21,198 INFO django.server "GET /static/admin/js/theme.js HTTP/1.1" 304 0
+2023-06-08 01:28:21,206 INFO django.server "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+2023-06-08 01:28:21,253 INFO django.server "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+2023-06-08 01:29:18,536 INFO django.server "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+2023-06-08 01:29:18,614 INFO django.server "GET /admin/ HTTP/1.1" 200 8066
+2023-06-08 01:29:18,674 INFO django.server "GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+2023-06-08 01:29:18,693 INFO django.server "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+2023-06-08 01:29:18,698 INFO django.server "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0

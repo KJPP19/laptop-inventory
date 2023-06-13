@@ -8,11 +8,11 @@ from .views import (UserInfoList, UserInfoCreate, UserInfoDetailApi,
 
 
 urlpatterns = [
-    path('users/', UserInfoList.as_view()),
-    path('users/add/', UserInfoCreate.as_view()),
-    path('users/<int:user_id>/', UserInfoDetailApi.as_view()),
-    path('laptops/', LaptopApi.as_view()),
-    path('laptops/add/', LaptopCreate.as_view()),
+    path('users/', UserInfoList.as_view(), name='user-info-list'),
+    path('users/add/', UserInfoCreate.as_view(), name='add-user-info'),
+    path('users/<int:user_id>/', UserInfoDetailApi.as_view(), name='user-info-detail'),
+    path('laptops/', LaptopApi.as_view(), name='laptop-list'),
+    path('laptops/add/', LaptopCreate.as_view(), name='laptop-create'),
     path('laptops/<int:laptop_id>/', LaptopDetailApi.as_view()),
     path('laptops/<int:laptop_id>/status/', UpdateLaptopStatusApi.as_view()),
     path('laptops/<int:laptop_id>/current-user/', UpdateLaptopCurrentUser.as_view()),
